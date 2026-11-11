@@ -1,0 +1,23 @@
+# news-summary-01 entry: writes one fixed summary of the world's news of
+# Wednesday 11 November 2026 to /output/entry.txt. Deterministic: the same
+# bytes on every run. (Python 3.13, standard library only.)
+import os
+
+SUMMARY = """World news, Wednesday 11 November 2026.
+
+In Washington, House Republicans blocked an impeachment measure against Defense Secretary Pete Hegseth, introduced by Rep. Thomas Massie; every Republican except Massie voted to table it. US prosecutors charged three men described as Iranian operatives with plotting an attack on RAF Fairford, the UK airbase used by American forces, and Treasury Secretary Scott Bessent was reported to have moved to a military installation after threats attributed to Iran. In Britain, a US Army officer was arrested on suspicion of spying for Russia, and NATO jets were scrambled after drone alerts in Lithuania.
+
+Diplomacy over Ukraine continued in Abu Dhabi, where Russian and Ukrainian negotiators held the first US-brokered talks since February, discussing a large prisoner exchange; President Zelensky said US envoys would travel to Russia to advance it. In Paris, G7 donors sought $250 million to repair Chernobyl's protective arch, damaged by a Russian drone strike. Germany's Chancellor Friedrich Merz warned Berlin could block the EU's 2028-34 budget unless members agree on Ukraine support.
+
+In the Middle East, a reported tanker incident in the Strait of Hormuz renewed fears over shipping. In Serbia, the defeat of Aleksandar Vucic's ruling party in parliamentary elections prompted calls for reform. Poland rallied after a mass shooting in Krakow killed six and injured 15, raising over 1.13 million euros for victims. Spain held a state funeral for the 69 victims of a deadly train crash.
+
+In business, Nvidia chief Jensen Huang admitted an affair with a woman who may have been a Chinese spy; shares fell, the company hired a former US attorney to investigate, and shareholders sued. President Trump continued to challenge his midterm defeat. Israel's new Knesset was sworn in, and climate talks opened at COP31."""
+
+def main():
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
+        f.write(SUMMARY)
+
+if __name__ == "__main__":
+    main()
