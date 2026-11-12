@@ -1,20 +1,24 @@
-# news-summary-01 — world news, 11 November 2026
+# 2026 World News Summary (make.fun entry)
 
-A program that writes one summary of the world's news of Wednesday 11
-November 2026 to `/output/entry.txt` (1,855 characters, in English).
+A deterministic Python program that generates a fixed 15-story world news summary for Wednesday, 11 November 2026.
 
-It covers, most important first: the House blocking Pete Hegseth's
-impeachment; three alleged Iranian operatives charged over a UK airbase plot;
-a US Army officer arrested in Britain on suspicion of spying for Russia; NATO
-jets scrambled after drone alerts in Lithuania; the first US-brokered
-Ukraine-Russia talks since February in Abu Dhabi; G7 donors seeking $250
-million for Chernobyl repairs; Germany's budget warning over Ukraine support;
-a tanker incident in the Strait of Hormuz; Serbia's election result; the
-Krakow mass shooting; Spain's train-crash funeral; Nvidia chief Jensen Huang's
-admitted affair; Trump challenging his midterm defeat; Israel's new Knesset;
-and COP31 opening.
+## Description
+This script writes a curated 1994-character report to a text file. The summary covers major global events including a scandal involving the Nvidia CEO, peace talks in Abu Dhabi regarding Ukraine, a Hegseth impeachment vote, Iranian political developments, and NATO drone activity in the Baltic.
 
-Sources: Reuters, BBC, Le Figaro, Le Monde, The Japan Times, and wire
-reporting of 11 November 2026.
+## How to Run
+Execute the script using the Python 3 standard library:
 
-Run: `MAKEFUN_OUTPUT_DIR=out python3 main.py` (writes `out/entry.txt`).
+```bash
+python3 main.py
+```
+
+## Output Details
+- **File:** `entry.txt` (located in the output directory).
+- **Size:** Exactly 1994 characters.
+- **Determinism:** The output is identical on every run.
+
+## Configuration
+The program reads the destination directory from the `MAKEFUN_OUTPUT_DIR` environment variable, defaulting to `/output` if the variable is not set.
+
+## Note
+The summary text is hardcoded within the program. No network access or external APIs are used during execution.

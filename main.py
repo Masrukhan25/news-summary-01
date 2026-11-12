@@ -1,22 +1,23 @@
-# news-summary-01 entry: writes one fixed summary of the world's news of
-# Wednesday 11 November 2026 to /output/entry.txt. Deterministic: the same
-# bytes on every run. (Python 3.13, standard library only.)
+# One-day world news summary of Wednesday 11 November 2026, deterministic, with 2000-character length check.
 import os
 
 SUMMARY = """World news, Wednesday 11 November 2026.
 
-In Washington, House Republicans blocked an impeachment measure against Defense Secretary Pete Hegseth, introduced by Rep. Thomas Massie; every Republican except Massie voted to table it. US prosecutors charged three men described as Iranian operatives with plotting an attack on RAF Fairford, the UK airbase used by American forces, and Treasury Secretary Scott Bessent was reported to have moved to a military installation after threats attributed to Iran. In Britain, a US Army officer was arrested on suspicion of spying for Russia, and NATO jets were scrambled after drone alerts in Lithuania.
+The Nvidia board met Wednesday evening to discuss ousting CEO Jensen Huang, according to the Wall Street Journal. The New York Times reported a second affair between Huang and VP Kimberly Powell, after The Information said a relationship with a suspected Chinese spy helped ship $7.5 billion of chips to China. Nvidia shares fell 8.6% after hours, losing $450 billion in value this week as the FBI and board investigate. In Abu Dhabi, US talks ended a second day with a large POW exchange and no ceasefire; US envoys Jared Kushner and Steve Witkoff travel to Moscow and Dublin Thursday. Meanwhile, President Zelenskyy rejected Donbas withdrawal proposals as Russian strikes on power grids cut power to 850,000 consumers in Dnipropetrovsk and Kharkiv.
 
-Diplomacy over Ukraine continued in Abu Dhabi, where Russian and Ukrainian negotiators held the first US-brokered talks since February, discussing a large prisoner exchange; President Zelensky said US envoys would travel to Russia to advance it. In Paris, G7 donors sought $250 million to repair Chernobyl's protective arch, damaged by a Russian drone strike. Germany's Chancellor Friedrich Merz warned Berlin could block the EU's 2028-34 budget unless members agree on Ukraine support.
+Gadi Eisenkot was tasked with forming a new Israeli government as the 26th Knesset was sworn in; he has 67 lawmakers against 46 for Benjamin Netanyahu. At Arlington, Trump said he would hold off fresh strikes on Iran for now, claiming victory, though tankers still burned in the Strait of Hormuz. Israeli forces killed at least seven people in Gaza, including a father and his 13-year-old son.
 
-In the Middle East, a reported tanker incident in the Strait of Hormuz renewed fears over shipping. In Serbia, the defeat of Aleksandar Vucic's ruling party in parliamentary elections prompted calls for reform. Poland rallied after a mass shooting in Krakow killed six and injured 15, raising over 1.13 million euros for victims. Spain held a state funeral for the 69 victims of a deadly train crash.
+The House voted 211-204 to block an impeachment measure against Pete Hegseth, while Poland reported progress in talks with Hegseth on a permanent US base. NATO scrambled jets after at least four drones entered Baltic airspace, and UK Counter Terrorism Policing said a US soldier was arrested on suspicion of spying for Russia.
 
-In business, Nvidia chief Jensen Huang admitted an affair with a woman who may have been a Chinese spy; shares fell, the company hired a former US attorney to investigate, and shareholders sued. President Trump continued to challenge his midterm defeat. Israel's new Knesset was sworn in, and climate talks opened at COP31."""
+Spain's first general strike in 14 years saw four million workers protest housing costs. Two days of national mourning began in Poland following a silent march in Krakow for six mass shooting victims. Wall Street rebounded as the S&P 500 rose 1.31% to 7,619.38 and the Nasdaq gained 1.60% to 25,466.19. The COP31 climate conference opened in Antalya, Turkey. Serbian scrutiny turned to calls for an intelligence probe following a student-led election victory over Vucic's party."""
 
 def main():
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
+    if not (1 <= len(SUMMARY) <= 2000):
+        raise ValueError(f"Summary length is {len(SUMMARY)}, which is not between 1 and 2000 characters.")
+    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(output_dir, exist_ok=True)
+    file_path = os.path.join(output_dir, "entry.txt")
+    with open(file_path, "w", encoding="utf-8", newline="\n") as f:
         f.write(SUMMARY)
 
 if __name__ == "__main__":
